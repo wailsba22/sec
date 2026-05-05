@@ -16,15 +16,39 @@ function lockPageForAdBlocker() {
 }
 
 function initializeAdBlockDetection() {
+  // Multiple detection methods
+  const detectors = [];
+  
+  // Method 1: Check if ads/googleads files exist
+  const img = new Image();
+  img.onerror = () => detectors.push(true);
+  img.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+  
+  // Method 2: FuckAdBlock library if available
   if (typeof fuckAdBlock !== 'undefined') {
-    fuckAdBlock.onDetected(lockPageForAdBlocker);
-    fuckAdBlock.onNotDetected(() => {
-      document.body.classList.remove('adblock-checking');
-      document.body.classList.remove('adblock-locked');
-      document.body.style.overflow = '';
+    fuckAdBlock.onDetected(() => {
+      if (!adBlockerDetected) {
+        adBlockerDetected = true;
+        lockPageForAdBlocker();
+        console.log('Ad blocker detected via FuckAdBlock');
+      }
     });
     fuckAdBlock.check();
   }
+  
+  // Wait 2 seconds then check all detectors
+  setTimeout(() => {
+    if (detectors.length > 0 || adBlockerDetected) {
+      if (!adBlockerDetected) {
+        console.log('Ad blocker detected via image method');
+        lockPageForAdBlocker();
+      }
+    } else {
+      console.log('No ad blocker detected');
+      document.body.classList.remove('adblock-locked');
+      document.body.style.overflow = '';
+    }
+  }, 2000);
 }
 
 async function init() {
