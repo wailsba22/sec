@@ -1,0 +1,70 @@
+﻿[
+  {
+    "key": "red_apple",
+    "name": "netflix",
+    "emoji": "🍎",
+    "theme": "theme-red",
+    "category": "Red Fruit",
+    "stock": 0,
+    "image": "img/red%20appel.webp",
+    "page": "red_apple.html",
+    "varieties": [
+      { "name": "Fuji", "pass": 1.2 },
+      { "name": "Gala", "pass": 0.9 },
+      { "name": "Honeycrisp", "pass": 1.4 },
+      { "name": "Braeburn", "pass": 1.1 },
+      { "name": "Red Delicious", "pass": 1.0 }
+    ]
+  },
+  {
+    "key": "orange",
+    "name": "crunchyroll",
+    "emoji": "🍊",
+    "theme": "theme-orange",
+    "category": "Orange Fruit",
+    "stock": 3,
+    "image": "img/orang.jpg",
+    "page": "orange.html",
+    "varieties": [
+      { "name": "Navel", "pass": 1.5 },
+      { "name": "Valencia", "pass": 1.3 },
+      { "name": "Blood Orange", "pass": 1.1 },
+      { "name": "Cara Cara", "pass": 1.2 },
+      { "name": "Mandarin", "pass": 0.6 }
+    ]
+  },
+  {
+    "key": "green_apple",
+    "name": "spotify",
+    "emoji": "🍏",
+    "theme": "theme-green",
+    "category": "Green Fruit",
+    "stock": 4,
+    "image": "img/green%20appel.png",
+    "page": "green_apple.html",
+    "varieties": [
+      { "name": "Granny Smith", "pass": "Crispin" },
+      { "name": "Golden Delicious", "pass": "Crispin" },
+      { "name": "Crispin", "pass": "Crispin" },
+      { "name": "Mutsu", "pass": "Crispin" },
+      { "name": "Lodi", "pass": "Crispin" }
+    ]
+  },
+  {
+    "key": "blueberry",
+    "name": "nord vpn",
+    "emoji": "🫐",
+    "theme": "theme-blue",
+    "category": "Blue Fruit",
+    "stock": 0,
+    "image": "img/blue.png",
+    "page": "blueberry.html",
+    "varieties": [
+      { "name": "Duke", "pass": 0.3 },
+      { "name": "Bluecrop", "pass": 0.28 },
+      { "name": "Jersey", "pass": 0.32 },
+      { "name": "Patriot", "pass": 0.29 },
+      { "name": "Chandler", "pass": 0.35 }
+    ]
+  }
+]

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Apple</title>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-green" data-fruit-key="green_apple">
+<div class="bg-orb"></div>
+<div class="bg-orb"></div>
+<div class="bg-orb"></div>
+<div class="confetti-container" id="confetti"></div>
+<header>
+  <h1>Green Apple</h1>
+</header>
+<main>
+  <section class="fruit-page-header">
+    <div class="page-top-bar" id="pageTopBar">
+      <a href="index.html" class="back-link">← All fruits</a>
+      <div id="stockStatus" class="status-pill status-out">OUT OF STOCK</div>
+    </div>
+    <div class="fruit-banner">
+      <img id="fruitImage" class="fruit-thumb" src="img/green%20appel.png" alt="Green Apple">
+    </div>
+    <div class="fruit-details">
+      <div class="fruit-detail-title" id="fruitDetailName">Green Apple</div>
+      <div class="fruit-detail-category" id="fruitDetailCategory">Green Fruit</div>
+    </div>
+  </section>
+  <section class="fruit-controls">
+    <button class="gen-btn" id="generateButton">Get one now</button>
+  </section>
+  <div class="json-section" id="jsonSection" style="display:none">
+    <div class="json-header">
+      <span>⚙ JSON Output</span>
+      <button class="copy-btn" id="copyButton">Copy</button>
+    </div>
+    <pre id="jsonOut"></pre>
+  </div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
