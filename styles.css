@@ -20,6 +20,19 @@ body {
   position: relative;
 }
 
+body.adblock-locked {
+  overflow: hidden;
+}
+
+body.adblock-locked header,
+body.adblock-locked main,
+body.adblock-locked .bg-orb,
+body.adblock-locked .confetti-container {
+  filter: blur(10px);
+  pointer-events: none;
+  user-select: none;
+}
+
 body.theme-red { background: linear-gradient(135deg, #160408, #0b0710); }
 body.theme-orange { background: linear-gradient(135deg, #241000, #0f070c); }
 body.theme-green { background: linear-gradient(135deg, #08120a, #071014); }
@@ -507,4 +520,94 @@ pre {
   .card-subtitle {
     font-size: 0.65rem;
   }
+}
+
+/* Ad Blocker Detection Modal */
+.adblocker-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  backdrop-filter: blur(5px);
+}
+
+.adblocker-modal.active {
+  display: flex;
+}
+
+.adblocker-modal-content {
+  background: var(--card);
+  border: 2px solid var(--apple-red);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(255, 77, 109, 0.3);
+  animation: modalPop 0.4s ease-out;
+}
+
+@keyframes modalPop {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.adblocker-modal h2 {
+  font-family: 'Righteous', cursive;
+  font-size: 2rem;
+  color: var(--apple-red);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.adblocker-modal p {
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+}
+
+.adblocker-modal .warning-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.adblocker-disable-btn {
+  background: linear-gradient(135deg, var(--apple-red), #ff6b82);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.adblocker-disable-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+}
+
+.adblocker-disable-btn:active {
+  transform: translateY(0);
+}
+
+#ad-placeholder {
+  display: none;
 }

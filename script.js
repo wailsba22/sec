@@ -1,8 +1,35 @@
 ﻿let FRUITS = [];
 let lastResult = null;
 let currentFruit = null;
+let adBlockerDetected = false;
+
+function lockPageForAdBlocker() {
+  adBlockerDetected = true;
+
+  const modal = document.getElementById('adblockerModal');
+  if (modal) {
+    modal.classList.add('active');
+  }
+
+  document.body.classList.add('adblock-locked');
+  document.body.style.overflow = 'hidden';
+}
+
+function initializeAdBlockDetection() {
+  if (typeof fuckAdBlock !== 'undefined') {
+    fuckAdBlock.onDetected(lockPageForAdBlocker);
+    fuckAdBlock.onNotDetected(() => {
+      document.body.classList.remove('adblock-checking');
+      document.body.classList.remove('adblock-locked');
+      document.body.style.overflow = '';
+    });
+    fuckAdBlock.check();
+  }
+}
 
 async function init() {
+  initializeAdBlockDetection();
+
   try {
     const response = await fetch('./fruits.json');
     if (!response.ok) throw new Error(`Failed to load fruits.json: ${response.status}`);
@@ -14,6 +41,8 @@ async function init() {
 }
 
 function renderPage() {
+  if (adBlockerDetected) return;
+
   const fruitKey = document.body.dataset.fruitKey;
   if (fruitKey) {
     renderFruitPage(fruitKey);
@@ -23,6 +52,8 @@ function renderPage() {
 }
 
 function renderIndexPage() {
+  if (adBlockerDetected) return;
+
   const grid = document.getElementById('catalogGrid');
   if (!grid) return;
   grid.innerHTML = '';
@@ -43,6 +74,8 @@ function renderIndexPage() {
 }
 
 function renderFruitPage(key) {
+  if (adBlockerDetected) return;
+
   currentFruit = FRUITS.find(x => x.key === key);
   if (!currentFruit) return;
 
@@ -122,7 +155,7 @@ function pickRandom(arr) {
 }
 
 function generate() {
-  if (!currentFruit) return;
+  if (!currentFruit || adBlockerDetected) return;
   spawnConfetti();
 
   if (currentFruit.stock <= 0) {
